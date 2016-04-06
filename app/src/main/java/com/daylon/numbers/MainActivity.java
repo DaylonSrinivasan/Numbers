@@ -62,6 +62,13 @@ public class MainActivity extends AppCompatActivity {
 
         //Button Listeners!
 
+
+        xButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
         xButton.setOnTouchListener(new View.OnTouchListener(){
             @Override
             public boolean onTouch(View v, MotionEvent e){
