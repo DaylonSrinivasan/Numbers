@@ -1,22 +1,11 @@
 package com.daylon.numbers;
 
-import android.animation.Animator;
-import android.animation.ObjectAnimator;
-import android.app.ActionBar;
-import android.app.Activity;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.animation.DecelerateInterpolator;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -58,17 +47,11 @@ public class MainActivity extends AppCompatActivity {
         checkButton = (ImageButton) findViewById(R.id.checkbutton);
 
         //progress bar! === COME BACK
-        pb = (ProgressBar) findViewById(R.id.progressBar);
+        pb = (ProgressBar) findViewById(R.id.pb_1);
 
         //Button Listeners!
 
 
-        xButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
         xButton.setOnTouchListener(new View.OnTouchListener(){
             @Override
             public boolean onTouch(View v, MotionEvent e){
@@ -142,8 +125,6 @@ public class MainActivity extends AppCompatActivity {
     public void startGame(){
         ans = setExpressions();
         newLevel();
-
-
     }
 
     public void newLevel(){

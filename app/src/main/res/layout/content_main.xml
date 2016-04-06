@@ -70,12 +70,11 @@
         style="@android:style/Widget.ProgressBar.Horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/progressBar"
+        android:id="@+id/pb_1"
         android:layout_centerHorizontal="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="false"
-        android:layout_alignParentBottom="false"
-        android:layout_marginTop="50dp" />
+        android:layout_alignParentBottom="false" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -84,6 +83,6 @@
         android:text="Large Text"
         android:id="@+id/level"
         android:layout_centerHorizontal="true"
-        android:layout_below="@+id/progressBar" />
+        android:layout_below="@+id/pb_1" />
 
 </RelativeLayout>
