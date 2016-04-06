@@ -11,6 +11,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -60,21 +61,45 @@ public class MainActivity extends AppCompatActivity {
         pb = (ProgressBar) findViewById(R.id.progressBar);
 
         //Button Listeners!
-        xButton.setOnClickListener(new View.OnClickListener() {
+
+        xButton.setOnTouchListener(new View.OnTouchListener(){
             @Override
-            public void onClick(View v) {
-                if(gameOn)
-                    testCheck(false);
+            public boolean onTouch(View v, MotionEvent e){
+                switch (e.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        if(gameOn) {
+                            xButton.setImageResource(R.drawable.pressedxmark);
+                            testCheck(false);
+                            return true;
+                        }
+                    case MotionEvent.ACTION_UP:
+                        xButton.setImageResource(R.drawable.xmark);
+                        return true;
+                }
+                return false;
             }
         });
 
-        checkButton.setOnClickListener(new View.OnClickListener() {
+
+        checkButton.setOnTouchListener(new View.OnTouchListener() {
             @Override
-            public void onClick(View v){
-                if(gameOn)
-                    testCheck(true);
+            public boolean onTouch(View v, MotionEvent e) {
+                switch (e.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        if(gameOn) {
+                            checkButton.setImageResource(R.drawable.pressedcheck);
+                            testCheck(true);
+                            return true;
+                        }
+                    case MotionEvent.ACTION_UP:
+                        checkButton.setImageResource(R.drawable.check);
+                        return true;
+
+                }
+                return false;
             }
         });
+
 
         //TextViews
         lhs = (TextView) findViewById(R.id.lhs);
