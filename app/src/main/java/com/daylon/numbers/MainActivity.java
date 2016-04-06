@@ -120,7 +120,9 @@ public class MainActivity extends AppCompatActivity {
         startGame();
         Typeface font = Typeface.createFromAsset(getAssets(), "Grundschrift-Bold.otf");
         lhs.setTypeface(font);
+        lhs.setTextSize(30);
         rhs.setTypeface(font);
+        rhs.setTextSize(30);
         tLevel.setTypeface(font);
 
 
