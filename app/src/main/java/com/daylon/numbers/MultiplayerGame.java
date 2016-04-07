@@ -43,6 +43,25 @@ public class MultiplayerGame extends AppCompatActivity {
     Random random;
     boolean gameOn = false;
 
+    /*@Override
+    protected void onDestroy(){ //BAD WAY TO IMPLEMENT REMOVAL OF PLAYERS
+        super.onDestroy();
+        myFirebaseRef.child("Players").setValue(players-1);
+    }*/
+
+    @Override
+    protected void onStop(){
+        super.onStop();
+        myFirebaseRef.child("Players").setValue(players - 1);
+
+    }
+
+    @Override
+    protected void onRestart(){
+        super.onRestart();
+        myFirebaseRef.child("Players").setValue(players+1);
+
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
