@@ -15,36 +15,6 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true">
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Versus"
-            android:id="@+id/button"
-            android:textSize="30dp"
-            android:layout_below="@+id/button2"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="56dp" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Single Player"
-            android:id="@+id/button2"
-            android:textSize="30dp"
-            android:layout_centerVertical="true"
-            android:layout_alignLeft="@+id/button3"
-            android:layout_alignStart="@+id/button3" />
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Leaderboard"
-            android:id="@+id/button3"
-            android:textSize="30dp"
-            android:layout_below="@+id/button"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="53dp" />
-
         <View
             android:id="@+id/secondView"
             android:layout_width="0dp"
@@ -57,9 +27,41 @@
             android:layout_height="wrap_content"
             android:padding="1dp"
             android:src="@drawable/titleanimation1"
-            android:layout_above="@+id/button2"
+            android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="71dp" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/singleplayer"
+            android:src="@drawable/singleplayer1"
+            android:scaleType="centerInside"
+            android:background="#ffffff"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/versus"
+            android:src="@drawable/versus1"
+            android:scaleType="centerInside"
+            android:background="#ffffff"
+            android:layout_marginTop="68dp"
+            android:layout_below="@+id/singleplayer"
+            android:layout_centerHorizontal="true" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/leaderboard"
+            android:src="@drawable/leaderboard1"
+            android:background="#ffffff"
+            android:layout_marginTop="66dp"
+            android:layout_below="@+id/versus"
+            android:layout_centerHorizontal="true" />
 
     </RelativeLayout>
 

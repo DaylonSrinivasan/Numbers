@@ -35,6 +35,8 @@
             android:layout_centerHorizontal="true"
             android:typeface="serif"
             android:autoText="false" />
+
+
     </RelativeLayout>
 
     <View
@@ -72,13 +74,15 @@
             android:id="@+id/rhs"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true" />
+
+
     </RelativeLayout>
 
     <ProgressBar
         style="@android:style/Widget.ProgressBar.Horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/progressBar"
+        android:id="@+id/singleplayerPB"
         android:layout_centerHorizontal="true"
         android:layout_alignParentLeft="false"
         android:layout_alignParentBottom="false"
@@ -91,7 +95,17 @@
         android:text="Large Text"
         android:id="@+id/level"
         android:layout_centerHorizontal="true"
-        android:layout_below="@+id/progressBar"
+        android:layout_below="@+id/singleplayerPB"
         android:textStyle="bold" />
+
+    <pl.droidsonroids.gif.GifTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/readygo"
+        android:id="@+id/readygo"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        />
+
 
 </RelativeLayout>
