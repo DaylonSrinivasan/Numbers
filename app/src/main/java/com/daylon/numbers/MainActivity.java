@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
         checkButton = (ImageButton) findViewById(R.id.checkbutton);
 
         //progress bar! === COME BACK
-        pb = (ProgressBar) findViewById(R.id.pb_1);
+        pb = (ProgressBar) findViewById(R.id.singleplayerPB);
 
         //Button Listeners!
 

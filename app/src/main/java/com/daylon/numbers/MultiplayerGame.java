@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
@@ -22,8 +23,6 @@ public class MultiplayerGame extends AppCompatActivity {
     final int MAX_SCORE = 30;
 
     long players;
-    long p1Score;
-    long p2Score;
     TextView lhs;
     TextView rhs;
     TextView tLevel;
@@ -32,6 +31,11 @@ public class MultiplayerGame extends AppCompatActivity {
     ImageButton checkButton;
     ProgressBar pb_1;
     ProgressBar pb_2;
+    ProgressBar [] pbs = {pb_1, pb_2};
+    long [] scores = {0, 0};
+    boolean idSet = false;
+    long myID;
+
     int level;
     CountDownTimer timer;
 
@@ -46,19 +50,23 @@ public class MultiplayerGame extends AppCompatActivity {
 
         myFirebaseRef = new Firebase("https://daylonnumbers.firebaseio.com");
 
-        p1Score = 0;
-        p2Score = 0;
         pb_1 = (ProgressBar) findViewById(R.id.pb_1);
         pb_2 = (ProgressBar) findViewById(R.id.pb_2);
         pb_1.setMax(MAX_SCORE);
         pb_2.setMax(MAX_SCORE);
 
-        myFirebaseRef.child("p1Score").setValue(p1Score);
-        myFirebaseRef.child("p2Score").setValue(p2Score);
+        myFirebaseRef.child("p1Score").setValue(0);
+        myFirebaseRef.child("p2Score").setValue(0);
         myFirebaseRef.child("Players").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 players = (long) dataSnapshot.getValue();
+                if(!idSet) {
+                    myID = (long) dataSnapshot.getValue();
+                    Toast.makeText(MultiplayerGame.this, "Set playerID to " + myID, Toast.LENGTH_SHORT);
+                    idSet = true;
+                    System.out.println("My id is " + myID);
+                }
             }
 
             @Override
@@ -69,10 +77,11 @@ public class MultiplayerGame extends AppCompatActivity {
         myFirebaseRef.child("p1Score").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                p1Score = (long) dataSnapshot.getValue();
-                pb_1.setProgress((int) p1Score);
-                if(p1Score == MAX_SCORE){
-                    System.out.println("You WIN!");
+                scores[0] = (long) dataSnapshot.getValue();
+                pb_1.setProgress((int) scores[0]);
+                if(scores[0] == MAX_SCORE){
+                    Toast.makeText(MultiplayerGame.this, myID == 0 ? "You WIN!" : "You Lose!",
+                            Toast.LENGTH_SHORT);
                     gameOn = false;
                 }
             }
@@ -85,10 +94,11 @@ public class MultiplayerGame extends AppCompatActivity {
         myFirebaseRef.child("p2Score").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                p2Score = (long) dataSnapshot.getValue();
-                pb_2.setProgress((int) p2Score);
-                if(p2Score == MAX_SCORE){
-                    System.out.println("YOU LOSE!");
+                scores[1] = (long) dataSnapshot.getValue();
+                pb_2.setProgress((int) scores[1]);
+                if(scores[1] == MAX_SCORE){
+                    Toast.makeText(MultiplayerGame.this, myID == 0 ? "You WIN!" : "You Lose!",
+                            Toast.LENGTH_SHORT);
                     gameOn = false;
                 }
             }
@@ -105,16 +115,16 @@ public class MultiplayerGame extends AppCompatActivity {
         xButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                p1Score++;
-                myFirebaseRef.child("p1Score").setValue(p1Score);
+                scores[myID == 1 ? 0 : 1]++;
+                myFirebaseRef.child(myID == 1 ? "p1Score" : "p2Score").setValue(myID == 1 ? scores[0] : scores[1]);
             }
         });
 
         checkButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                p2Score++;
-                myFirebaseRef.child("p2Score").setValue(p2Score);
+                scores[myID == 1 ? 0 : 1]++;
+                myFirebaseRef.child(myID == 1 ? "p1Score" : "p2Score").setValue(myID == 1 ? scores[0] : scores[1]);
             }
         });
 
@@ -178,8 +188,8 @@ public class MultiplayerGame extends AppCompatActivity {
         if(pAns == ans){
             ans = setExpressions();
             level++;
-            p1Score++;
-            myFirebaseRef.child("p1Score").setValue(p1Score);
+            scores[myID == 0 ? 0 : 1]++;
+            myFirebaseRef.child(myID == 0 ? "p1Score" : "p2Score").setValue(myID == 0 ? scores[0] : scores[1]);
             newLevel();
         }
         else{
