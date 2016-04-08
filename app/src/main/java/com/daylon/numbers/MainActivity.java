@@ -12,18 +12,22 @@ import android.widget.TextView;
 
 import java.util.Random;
 
+import pl.droidsonroids.gif.GifTextView;
+
 public class MainActivity extends AppCompatActivity {
     TextView lhs;
     TextView rhs;
     TextView tLevel;
+    TextView equals;
     ImageButton xButton;
     ImageButton checkButton;
     ProgressBar pb;
     CountDownTimer timer;
+    GifTextView readyGo;
     int level;
     boolean ans = true;
     Random random;
-    boolean gameOn = true;
+    boolean gameOn = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +53,9 @@ public class MainActivity extends AppCompatActivity {
         //progress bar! === COME BACK
         pb = (ProgressBar) findViewById(R.id.singleplayerPB);
 
+        //readyGo View
+        readyGo = (GifTextView) findViewById(R.id.readygo);
+
         //Button Listeners!
 
 
@@ -58,12 +65,10 @@ public class MainActivity extends AppCompatActivity {
                 switch (e.getAction()) {
                     case MotionEvent.ACTION_DOWN:
                         if(gameOn) {
-                            xButton.setImageResource(R.drawable.stillx);
                             testCheck(false);
                             return true;
                         }
                     case MotionEvent.ACTION_UP:
-                        xButton.setImageResource(R.drawable.stillx);
                         return true;
                 }
                 return false;
@@ -77,12 +82,10 @@ public class MainActivity extends AppCompatActivity {
                 switch (e.getAction()) {
                     case MotionEvent.ACTION_DOWN:
                         if(gameOn) {
-                            checkButton.setImageResource(R.drawable.stillcheck);
                             testCheck(true);
                             return true;
                         }
                     case MotionEvent.ACTION_UP:
-                        checkButton.setImageResource(R.drawable.stillcheck);
                         return true;
 
                 }
@@ -95,19 +98,21 @@ public class MainActivity extends AppCompatActivity {
         lhs = (TextView) findViewById(R.id.lhs);
         rhs = (TextView) findViewById(R.id.rhs);
         tLevel = (TextView) findViewById(R.id.level);
+        equals = (TextView) findViewById(R.id.equalsign);
 
         level = 1;
         random = new Random();
 
 
-
-        startGame();
         Typeface font = Typeface.createFromAsset(getAssets(), "Grundschrift-Bold.otf");
         lhs.setTypeface(font);
         lhs.setTextSize(30);
         rhs.setTypeface(font);
         rhs.setTextSize(30);
         tLevel.setTypeface(font);
+
+        readyAnimation();
+
 
 
     }
@@ -126,7 +131,13 @@ public class MainActivity extends AppCompatActivity {
         }
     }
     public void startGame(){
+        gameOn = true;
         ans = setExpressions();
+        equals.setVisibility(View.VISIBLE);
+        xButton.setImageResource(R.drawable.stillx);
+        checkButton.setImageResource(R.drawable.stillcheck);
+
+
         newLevel();
     }
 
@@ -146,6 +157,21 @@ public class MainActivity extends AppCompatActivity {
                 gameOn = false;
                 pb.setProgress(0);
                 System.out.println("time up!");
+            }
+        }.start();
+    }
+
+    public void readyAnimation(){
+        timer = new CountDownTimer(4500,10) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+
+            }
+
+            @Override
+            public void onFinish() {
+                readyGo.setVisibility(View.INVISIBLE);
+                startGame();
             }
         }.start();
     }

@@ -30,7 +30,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Large Text"
             android:id="@+id/lhs"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
@@ -76,7 +75,6 @@
             android:layout_height="wrap_content"
 
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Large Text"
             android:id="@+id/rhs"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
@@ -106,13 +104,12 @@
         android:id="@+id/readygo"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:visibility="invisible" />
+        />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Large Text"
         android:id="@+id/level"
         android:textStyle="bold"
         android:layout_marginTop="20dp"
@@ -137,7 +134,8 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:id="@+id/equalsign"
-        android:textSize="40sp" />
+        android:textSize="40sp"
+        android:visibility="invisible" />
 
 
 
