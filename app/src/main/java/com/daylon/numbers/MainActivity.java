@@ -58,12 +58,12 @@ public class MainActivity extends AppCompatActivity {
                 switch (e.getAction()) {
                     case MotionEvent.ACTION_DOWN:
                         if(gameOn) {
-                            xButton.setImageResource(R.drawable.pressedxmark);
+                            xButton.setImageResource(R.drawable.stillx);
                             testCheck(false);
                             return true;
                         }
                     case MotionEvent.ACTION_UP:
-                        xButton.setImageResource(R.drawable.xmark);
+                        xButton.setImageResource(R.drawable.stillx);
                         return true;
                 }
                 return false;
@@ -77,12 +77,12 @@ public class MainActivity extends AppCompatActivity {
                 switch (e.getAction()) {
                     case MotionEvent.ACTION_DOWN:
                         if(gameOn) {
-                            checkButton.setImageResource(R.drawable.pressedcheck);
+                            checkButton.setImageResource(R.drawable.stillcheck);
                             testCheck(true);
                             return true;
                         }
                     case MotionEvent.ACTION_UP:
-                        checkButton.setImageResource(R.drawable.check);
+                        checkButton.setImageResource(R.drawable.stillcheck);
                         return true;
 
                 }
@@ -98,6 +98,7 @@ public class MainActivity extends AppCompatActivity {
 
         level = 1;
         random = new Random();
+
 
 
         startGame();
@@ -130,7 +131,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void newLevel(){
-        tLevel.setText("Level: " + level);
+        tLevel.setText("" + level);
         pb.setMax(2000);
         pb.setProgress(2000);
         ans = setExpressions();

@@ -24,8 +24,6 @@ public class TitlePage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.content_title_page);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
         title = (ImageView) findViewById(R.id.title);
         animateTitle();
 

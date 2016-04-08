@@ -10,17 +10,17 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_toLeftOf="@+id/secondView"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="#ffffff">
 
-        <ImageButton
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+        <pl.droidsonroids.gif.GifImageButton
+            android:layout_width="150dp"
+            android:layout_height="150dp"
             android:id="@+id/xbutton"
-            android:layout_alignParentBottom="true"
-            android:src="@drawable/xmark"
+            android:background="@drawable/animatedxmark"
             android:scaleType="fitCenter"
-            android:layout_centerHorizontal="true"
-            android:background="#33B5E5"/>
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -45,17 +45,17 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_toRightOf="@+id/secondView"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="#ffffff">
 
-        <ImageButton
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+        <pl.droidsonroids.gif.GifImageButton
+            android:layout_width="150dp"
+            android:layout_height="150dp"
             android:id="@+id/checkbutton"
-            android:src="@drawable/check"
-            android:layout_alignParentBottom="true"
+            android:background="@drawable/bigcheckmark"
             android:scaleType="fitCenter"
-            android:layout_centerHorizontal="true"
-            android:background="#33B5E5" />
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true" />
 
         <TextView
             android:layout_width="wrap_content"
