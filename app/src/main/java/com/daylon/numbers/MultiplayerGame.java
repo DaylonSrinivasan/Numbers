@@ -159,12 +159,12 @@ public class MultiplayerGame extends AppCompatActivity {
                 switch (e.getAction()) {
                     case MotionEvent.ACTION_DOWN:
                         if (gameOn) {
-                            xButton.setImageResource(R.drawable.pressedxmark);
+                            xButton.setImageResource(R.drawable.stillx);
                             testCheck(false);
                             return true;
                         }
                     case MotionEvent.ACTION_UP:
-                        xButton.setImageResource(R.drawable.xmark);
+                        xButton.setImageResource(R.drawable.stillx);
                         return true;
                 }
                 return false;
@@ -178,12 +178,12 @@ public class MultiplayerGame extends AppCompatActivity {
                 switch (e.getAction()) {
                     case MotionEvent.ACTION_DOWN:
                         if (gameOn) {
-                            checkButton.setImageResource(R.drawable.pressedcheck);
+                            checkButton.setImageResource(R.drawable.stillcheck);
                             testCheck(true);
                             return true;
                         }
                     case MotionEvent.ACTION_UP:
-                        checkButton.setImageResource(R.drawable.check);
+                        checkButton.setImageResource(R.drawable.stillcheck);
                         return true;
 
                 }
