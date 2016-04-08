@@ -63,6 +63,68 @@
             android:layout_below="@+id/versus"
             android:layout_centerHorizontal="true" />
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="visible"
+            android:layout_below="@+id/versus"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:id="@+id/roomLayout">
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/rm1"
+                android:src="@drawable/room1"
+                android:layout_alignParentTop="true"
+                android:layout_toLeftOf="@+id/rm2"
+                android:layout_toStartOf="@+id/rm2" />
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/rm2"
+                android:src="@drawable/room2"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true" />
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/rm3"
+                android:src="@drawable/room3"
+                android:layout_alignParentTop="true"
+                android:layout_toRightOf="@+id/rm2"
+                android:layout_toEndOf="@+id/rm2" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:id="@+id/rm1Occupancy"
+                android:layout_below="@+id/rm1"
+                android:layout_alignLeft="@+id/rm1"
+                android:layout_alignStart="@+id/rm1" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:id="@+id/rm2Occupancy"
+                android:layout_below="@+id/rm1"
+                android:layout_centerHorizontal="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:id="@+id/rm3Occupancy"
+                android:layout_below="@+id/rm1"
+                android:layout_alignRight="@+id/rm3"
+                android:layout_alignEnd="@+id/rm3" />
+        </RelativeLayout>
+
     </RelativeLayout>
 
 

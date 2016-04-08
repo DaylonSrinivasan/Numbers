@@ -21,7 +21,7 @@ import java.util.Random;
 public class MultiplayerGame extends AppCompatActivity {
 
     final int MAX_SCORE = 30;
-    String gameRoom = "Room 1";
+    String gameRoom;
     long players;
     TextView lhs;
     TextView rhs;
@@ -67,6 +67,8 @@ public class MultiplayerGame extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_multiplayer_game);
 
+        gameRoom = "Room " + (int)getIntent().getExtras().get("room");
+
         myFirebaseRef = new Firebase("https://daylonnumbers.firebaseio.com").child(gameRoom);
 
         pb_1 = (ProgressBar) findViewById(R.id.pb_1);
@@ -74,6 +76,7 @@ public class MultiplayerGame extends AppCompatActivity {
         pb_1.setMax(MAX_SCORE);
         pb_2.setMax(MAX_SCORE);
 
+        System.out.println(gameRoom);
         myFirebaseRef.child("p1Score").setValue(0);
         myFirebaseRef.child("p2Score").setValue(0);
         myFirebaseRef.child("Players").addValueEventListener(new ValueEventListener() {
@@ -84,7 +87,6 @@ public class MultiplayerGame extends AppCompatActivity {
                     myID = (long) dataSnapshot.getValue();
                     Toast.makeText(MultiplayerGame.this, "Set playerID to " + myID, Toast.LENGTH_SHORT);
                     idSet = true;
-                    System.out.println("My id is " + myID);
                     myFirebaseRef.child("Players").setValue(myID+1);
                 }
                 if(players==2){
