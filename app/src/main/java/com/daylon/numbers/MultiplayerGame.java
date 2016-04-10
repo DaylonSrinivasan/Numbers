@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -33,6 +34,8 @@ public class MultiplayerGame extends AppCompatActivity {
     Firebase myFirebaseRef;
     ImageButton xButton;
     ImageButton checkButton;
+    ImageView topPlayer;
+    ImageView botPlayer;
     TextView equals;
     ProgressBar pb_1;
     ProgressBar pb_2;
@@ -96,6 +99,9 @@ public class MultiplayerGame extends AppCompatActivity {
         pb_2 = (ProgressBar) findViewById(R.id.pb_2);
         pb_1.setMax(MAX_SCORE);
         pb_2.setMax(MAX_SCORE);
+
+        topPlayer = (ImageView) findViewById(R.id.topPlayer);
+        botPlayer = (ImageView) findViewById(R.id.botPlayer);
 
         //readyGo View
         readyGo = (GifTextView) findViewById(R.id.readygo);
@@ -255,6 +261,10 @@ public class MultiplayerGame extends AppCompatActivity {
     public void readyAnimation(){
         readyGo.setVisibility(View.VISIBLE);
         readyGo.setBackgroundResource(R.drawable.readygo);
+        topPlayer.setImageResource(myID == 0 ? R.drawable.you : R.drawable.your_opponent);
+        botPlayer.setImageResource(myID == 1 ? R.drawable.you : R.drawable.your_opponent);
+        topPlayer.setVisibility(View.VISIBLE);
+        botPlayer.setVisibility(View.VISIBLE);
         timer = new CountDownTimer(4500,10) {
             @Override
             public void onTick(long millisUntilFinished) {

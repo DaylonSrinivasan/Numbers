@@ -70,21 +70,31 @@
 
     </RelativeLayout>
 
-    <TextView
+
+    <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:id="@+id/level"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/pb_1" />
+        android:id="@+id/topPlayer"
+        android:layout_alignParentTop="true"
+        android:src="@drawable/you"
+        android:layout_centerHorizontal="true" />
 
     <ProgressBar
         style="@android:style/Widget.ProgressBar.Horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/pb_1"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/topPlayer"
+        android:indeterminate="false" />
 
-        android:layout_alignParentTop="true"
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/botPlayer"
+        android:src="@drawable/your_opponent"
+        android:layout_below="@+id/pb_1"
         android:layout_centerHorizontal="true" />
 
     <ProgressBar
@@ -92,9 +102,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/pb_2"
-        android:layout_marginTop="49dp"
-        android:layout_alignParentTop="true"
+        android:layout_below="@+id/botPlayer"
         android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/level"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/pb_2"
+        android:text="asdf" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -105,6 +124,7 @@
         android:id="@+id/equalsign"
         android:textSize="40sp"
         android:visibility="invisible" />
+
     <pl.droidsonroids.gif.GifTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -112,6 +132,9 @@
         android:id="@+id/readygo"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:visibility="visible" />
+        android:visibility="visible"
+        android:scaleType="fitCenter"
+        />
+
 
 </RelativeLayout>
