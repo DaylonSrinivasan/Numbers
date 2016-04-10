@@ -20,7 +20,8 @@
             android:background="@drawable/animatedxmark"
             android:scaleType="fitCenter"
             android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true" />
+            android:layout_centerHorizontal="true"
+            android:visibility="invisible" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -55,7 +56,8 @@
             android:background="@drawable/bigcheckmark"
             android:scaleType="fitCenter"
             android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true" />
+            android:layout_centerHorizontal="true"
+            android:visibility="invisible" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -72,7 +74,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Large Text"
         android:id="@+id/level"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/pb_1" />
@@ -102,7 +103,8 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:id="@+id/equalsign"
-        android:textSize="40sp" />
+        android:textSize="40sp"
+        android:visibility="invisible" />
     <pl.droidsonroids.gif.GifTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -110,6 +112,6 @@
         android:id="@+id/readygo"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        />
+        android:visibility="visible" />
 
 </RelativeLayout>

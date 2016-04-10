@@ -6,9 +6,14 @@ import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.firebase.client.Firebase;
 
 import java.util.Random;
 
@@ -21,13 +26,20 @@ public class MainActivity extends AppCompatActivity {
     TextView equals;
     ImageButton xButton;
     ImageButton checkButton;
+    ImageButton submit_score;
+    ImageButton play_again;
+    ImageButton home;
+    EditText username;
+    ImageButton confirm_submit;
     ProgressBar pb;
     CountDownTimer timer;
     GifTextView readyGo;
+    boolean alreadySubmitted = false;
     int level;
     boolean ans = true;
     Random random;
     boolean gameOn = false;
+    Firebase ref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +61,12 @@ public class MainActivity extends AppCompatActivity {
         //Buttons!
         xButton = (ImageButton) findViewById(R.id.xbutton);
         checkButton = (ImageButton) findViewById(R.id.checkbutton);
+        submit_score = (ImageButton) findViewById(R.id.submit_score);
+        play_again = (ImageButton) findViewById(R.id.play_again);
+        home = (ImageButton) findViewById(R.id.home);
+        confirm_submit = (ImageButton) findViewById(R.id.confirm_submit);
+
+        username =(EditText) findViewById(R.id.username);
 
         //progress bar! === COME BACK
         pb = (ProgressBar) findViewById(R.id.singleplayerPB);
@@ -56,6 +74,7 @@ public class MainActivity extends AppCompatActivity {
         //readyGo View
         readyGo = (GifTextView) findViewById(R.id.readygo);
 
+        ref = new Firebase("https://daylonnumbers.firebaseio.com").child("UserScores");
         //Button Listeners!
 
 
@@ -93,6 +112,53 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        play_again.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                readyAnimation();
+            }
+        });
+        submit_score.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!alreadySubmitted) {
+                    play_again.setVisibility(View.INVISIBLE);
+                    submit_score.setVisibility(View.INVISIBLE);
+                    home.setVisibility(View.INVISIBLE);
+                    username.setVisibility(View.VISIBLE);
+                    confirm_submit.setVisibility(View.VISIBLE);
+                    alreadySubmitted = true;
+                    confirm_submit.setVisibility(View.VISIBLE);
+                    username.setVisibility(View.VISIBLE);
+                }
+                else{
+                    Toast.makeText(MainActivity.this, "Score already submitted!", Toast.LENGTH_LONG);
+                }
+            }
+        });
+
+        home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+        confirm_submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(username.getText().toString().length()<14){
+                    UserScore u = new UserScore(username.getText().toString(), level);
+                    ref.push().setValue(u);
+                    confirm_submit.setVisibility(View.INVISIBLE);
+                    username.setVisibility(View.INVISIBLE);
+                    play_again.setVisibility(View.VISIBLE);
+                    submit_score.setVisibility(View.VISIBLE);
+                    home.setVisibility(View.VISIBLE);
+                    alreadySubmitted = true;
+                }
+            }
+        });
 
         //TextViews
         lhs = (TextView) findViewById(R.id.lhs);
@@ -100,7 +166,6 @@ public class MainActivity extends AppCompatActivity {
         tLevel = (TextView) findViewById(R.id.level);
         equals = (TextView) findViewById(R.id.equalsign);
 
-        level = 1;
         random = new Random();
 
 
@@ -124,21 +189,33 @@ public class MainActivity extends AppCompatActivity {
             newLevel();
         }
         else{
-            System.out.println(pAns);
-            System.out.println(ans);
-            System.out.println("Game over");
-            gameOn = false;
+            endGame();
         }
     }
     public void startGame(){
         gameOn = true;
+        level = 1;
         ans = setExpressions();
         equals.setVisibility(View.VISIBLE);
+        rhs.setVisibility(View.VISIBLE);
+        lhs.setVisibility(View.VISIBLE);
         xButton.setImageResource(R.drawable.stillx);
         checkButton.setImageResource(R.drawable.stillcheck);
-
-
+        xButton.setVisibility(View.VISIBLE);
+        checkButton.setVisibility(View.VISIBLE);
         newLevel();
+    }
+
+    public void endGame(){
+        gameOn = false;
+        xButton.setVisibility(View.INVISIBLE);
+        checkButton.setVisibility(View.INVISIBLE);
+        submit_score.setVisibility(View.VISIBLE);
+        play_again.setVisibility(View.VISIBLE);
+        home.setVisibility(View.VISIBLE);
+        rhs.setVisibility(View.INVISIBLE);
+        lhs.setVisibility(View.INVISIBLE);
+        equals.setVisibility(View.INVISIBLE);
     }
 
     public void newLevel(){
@@ -154,14 +231,16 @@ public class MainActivity extends AppCompatActivity {
             }
             @Override
             public void onFinish() {
-                gameOn = false;
-                pb.setProgress(0);
-                System.out.println("time up!");
+                endGame();
             }
         }.start();
     }
 
     public void readyAnimation(){
+        readyGo.setVisibility(View.VISIBLE);
+        play_again.setVisibility(View.INVISIBLE);
+        submit_score.setVisibility(View.INVISIBLE);
+        home.setVisibility(View.INVISIBLE);
         timer = new CountDownTimer(4500,10) {
             @Override
             public void onTick(long millisUntilFinished) {
