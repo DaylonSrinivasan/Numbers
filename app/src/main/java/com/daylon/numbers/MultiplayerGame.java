@@ -108,7 +108,6 @@ public class MultiplayerGame extends AppCompatActivity {
                 players = (long) dataSnapshot.getValue();
                 if(!idSet) {
                     myID = (long) dataSnapshot.getValue();
-                    Toast.makeText(MultiplayerGame.this, "Set playerID to " + myID, Toast.LENGTH_SHORT);
                     idSet = true;
                     myFirebaseRef.child("Players").setValue(myID+1);
                 }
@@ -130,8 +129,6 @@ public class MultiplayerGame extends AppCompatActivity {
                 scores[0] = (long) dataSnapshot.getValue();
                 pb_1.setProgress((int) scores[0]);
                 if(scores[0] == MAX_SCORE){
-                    Toast.makeText(MultiplayerGame.this, myID == 0 ? "You WIN!" : "You Lose!",
-                            Toast.LENGTH_SHORT);
                     endGame();
                 }
             }
@@ -147,8 +144,6 @@ public class MultiplayerGame extends AppCompatActivity {
                 scores[1] = (long) dataSnapshot.getValue();
                 pb_2.setProgress((int) scores[1]);
                 if(scores[1] == MAX_SCORE){
-                    Toast.makeText(MultiplayerGame.this, myID == 0 ? "You WIN!" : "You Lose!",
-                            Toast.LENGTH_SHORT);
                     endGame();
                 }
             }
@@ -288,13 +283,24 @@ public class MultiplayerGame extends AppCompatActivity {
     }
     public void endGame(){
         gameOn = false;
+        readyGo.setBackgroundResource(R.drawable.game_over_animated);
+        readyGo.setVisibility(View.VISIBLE);
         xButton.setVisibility(View.INVISIBLE);
         checkButton.setVisibility(View.INVISIBLE);
         rhs.setVisibility(View.INVISIBLE);
         lhs.setVisibility(View.INVISIBLE);
         equals.setVisibility(View.INVISIBLE);
-        //myFirebaseRef.child("Players").setValue(0);
+        timer = new CountDownTimer(4500,10) {
+            @Override
+            public void onTick(long millisUntilFinished) {
 
+            }
+
+            @Override
+            public void onFinish() {
+                readyGo.setVisibility(View.INVISIBLE);
+            }
+        }.start();
     }
     public boolean setExpressions(){
         int maxNum = level + 9;

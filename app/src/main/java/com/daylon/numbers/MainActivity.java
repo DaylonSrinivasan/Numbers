@@ -194,6 +194,7 @@ public class MainActivity extends AppCompatActivity {
     }
     public void startGame(){
         gameOn = true;
+        tLevel.setVisibility(View.VISIBLE);
         level = 1;
         ans = setExpressions();
         equals.setVisibility(View.VISIBLE);
@@ -208,14 +209,27 @@ public class MainActivity extends AppCompatActivity {
 
     public void endGame(){
         gameOn = false;
+        readyGo.setBackgroundResource(R.drawable.game_over_animated);
+        readyGo.setVisibility(View.VISIBLE);
         xButton.setVisibility(View.INVISIBLE);
         checkButton.setVisibility(View.INVISIBLE);
-        submit_score.setVisibility(View.VISIBLE);
-        play_again.setVisibility(View.VISIBLE);
-        home.setVisibility(View.VISIBLE);
         rhs.setVisibility(View.INVISIBLE);
         lhs.setVisibility(View.INVISIBLE);
         equals.setVisibility(View.INVISIBLE);
+        timer = new CountDownTimer(4500,10) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+
+            }
+
+            @Override
+            public void onFinish() {
+                readyGo.setVisibility(View.INVISIBLE);
+                submit_score.setVisibility(View.VISIBLE);
+                play_again.setVisibility(View.VISIBLE);
+                home.setVisibility(View.VISIBLE);
+            }
+        }.start();
     }
 
     public void newLevel(){
@@ -237,7 +251,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void readyAnimation(){
+        readyGo.setBackgroundResource(R.drawable.okgo);
         readyGo.setVisibility(View.VISIBLE);
+        tLevel.setVisibility(View.INVISIBLE);
         play_again.setVisibility(View.INVISIBLE);
         submit_score.setVisibility(View.INVISIBLE);
         home.setVisibility(View.INVISIBLE);
