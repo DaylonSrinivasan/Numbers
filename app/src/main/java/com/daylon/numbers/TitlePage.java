@@ -32,6 +32,7 @@ public class TitlePage extends AppCompatActivity {
     TextView rm2Occupancy;
     TextView rm3Occupancy;
     Firebase ref;
+    boolean roomsVisible;
 
 
 
@@ -53,6 +54,7 @@ public class TitlePage extends AppCompatActivity {
         rm1Occupancy = (TextView) findViewById(R.id.rm1Occupancy);
         rm2Occupancy = (TextView) findViewById(R.id.rm2Occupancy);
         rm3Occupancy = (TextView) findViewById(R.id.rm3Occupancy);
+        roomsVisible = false;
         ref = new Firebase("https://daylonnumbers.firebaseio.com");
         ref.child("Room 1").child("Players").addValueEventListener(new ValueEventListener() {
             @Override
@@ -99,7 +101,22 @@ public class TitlePage extends AppCompatActivity {
         versus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                roomLayout.setVisibility(View.VISIBLE);
+                if(!roomsVisible) {
+                    roomLayout.setVisibility(View.VISIBLE);
+                    roomsVisible = true;
+                }
+                else{
+                    roomLayout.setVisibility(View.INVISIBLE);
+                    roomsVisible = false;
+                }
+            }
+        });
+
+        leaderboard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(TitlePage.this, leaderboard.class);
+                startActivity(i);
             }
         });
 
