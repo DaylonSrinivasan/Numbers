@@ -172,7 +172,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onFinish() {
                 readyGo.setVisibility(View.INVISIBLE);
-
                 startGame();
             }
         }.start();
