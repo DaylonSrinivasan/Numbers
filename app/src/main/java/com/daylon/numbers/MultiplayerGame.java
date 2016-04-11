@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -33,6 +34,8 @@ public class MultiplayerGame extends AppCompatActivity {
     Firebase myFirebaseRef;
     ImageButton xButton;
     ImageButton checkButton;
+    ImageView topPlayer;
+    ImageView botPlayer;
     TextView equals;
     ProgressBar pb_1;
     ProgressBar pb_2;
@@ -75,27 +78,15 @@ public class MultiplayerGame extends AppCompatActivity {
         gameRoom = "Room " + (int)getIntent().getExtras().get("room");
 
         myFirebaseRef = new Firebase("https://daylonnumbers.firebaseio.com").child(gameRoom);
-        /*connectedRef = new Firebase("https://daylonnumbers.firebaseio.com/.info/connected");
-        connectedRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot snapshot) {
-                boolean connected = snapshot.getValue(Boolean.class);
-                if (connected) {
-                    System.out.println("connected");
-                } else {
-                    System.out.println("not connected");
-                }
-            }
-            @Override
-            public void onCancelled(FirebaseError error) {
-                System.err.println("Listener was cancelled");
-            }
-        });*/
-        //myFirebaseRef.child("Players").onDisconnect().setValue(players-1);
+        Firebase disconnectRef = new Firebase("https://daylonnumbers.firebaseio.com").child(gameRoom).child("Players");
+        disconnectRef.onDisconnect().setValue(players);
         pb_1 = (ProgressBar) findViewById(R.id.pb_1);
         pb_2 = (ProgressBar) findViewById(R.id.pb_2);
         pb_1.setMax(MAX_SCORE);
         pb_2.setMax(MAX_SCORE);
+
+        topPlayer = (ImageView) findViewById(R.id.topPlayer);
+        botPlayer = (ImageView) findViewById(R.id.botPlayer);
 
         //readyGo View
         readyGo = (GifTextView) findViewById(R.id.readygo);
@@ -238,15 +229,20 @@ public class MultiplayerGame extends AppCompatActivity {
             newLevel();
         }
         else{
-            timer = new CountDownTimer(2000,100) {
+            gameOn = false;
+            equals.setVisibility(View.INVISIBLE);
+            lhs.setText("Wrong!");
+            timer = new CountDownTimer(2000,10) {
                 @Override
                 public void onTick(long millisUntilFinished) {
-                    gameOn = false;
+                    rhs.setText("Penalty: " + millisUntilFinished);
                 }
 
                 @Override
                 public void onFinish() {
                     gameOn = true;
+                    equals.setVisibility(View.VISIBLE);
+                    newLevel();
                 }
             }.start();
         }
@@ -255,6 +251,10 @@ public class MultiplayerGame extends AppCompatActivity {
     public void readyAnimation(){
         readyGo.setVisibility(View.VISIBLE);
         readyGo.setBackgroundResource(R.drawable.readygo);
+        topPlayer.setImageResource(myID == 0 ? R.drawable.you : R.drawable.your_opponent);
+        botPlayer.setImageResource(myID == 1 ? R.drawable.you : R.drawable.your_opponent);
+        topPlayer.setVisibility(View.VISIBLE);
+        botPlayer.setVisibility(View.VISIBLE);
         timer = new CountDownTimer(4500,10) {
             @Override
             public void onTick(long millisUntilFinished) {
@@ -333,22 +333,8 @@ public class MultiplayerGame extends AppCompatActivity {
 
     public void newLevel(){
         tLevel.setText("Level: " + level);
-        //pb.setMax(2000);
-        //pb.setProgress(2000);
         ans = setExpressions();
-        /*timer = new CountDownTimer(2000, 10) {
-            @Override
-            public void onTick(long millisUntilFinished) {
-                //pb.setProgress((int)millisUntilFinished);
 
-            }
-            @Override
-            public void onFinish() {
-                gameOn = false;
-                //pb.setProgress(0);
-                System.out.println("time up!");
-            }
-        }.start();*/
     }
 
 }

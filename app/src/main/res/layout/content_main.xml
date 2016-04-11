@@ -102,9 +102,21 @@
         android:layout_height="wrap_content"
         android:background="@drawable/okgo"
         android:id="@+id/readygo"
+        android:scaleType="fitCenter"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         />
+
+    <pl.droidsonroids.gif.GifTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/game_over_animated"
+        android:id="@+id/gameover"
+        android:scaleType="fitCenter"
+        android:layout_centerHorizontal="true"
+        android:visibility="invisible"
+        android:layout_alignTop="@+id/play_again"
+        android:layout_above="@+id/home" />
 
     <TextView
         android:layout_width="wrap_content"

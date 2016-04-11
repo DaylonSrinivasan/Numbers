@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
     ProgressBar pb;
     CountDownTimer timer;
     GifTextView readyGo;
+    GifTextView gameOver;
     boolean alreadySubmitted = false;
     int level;
     boolean ans = true;
@@ -72,8 +73,9 @@ public class MainActivity extends AppCompatActivity {
         //progress bar! === COME BACK
         pb = (ProgressBar) findViewById(R.id.singleplayerPB);
 
-        //readyGo View
+        //gifs
         readyGo = (GifTextView) findViewById(R.id.readygo);
+        gameOver = (GifTextView) findViewById(R.id.gameover);
 
         ref = new Firebase("https://daylonnumbers.firebaseio.com").child("UserScores");
         //Button Listeners!
@@ -210,8 +212,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void endGame(){
         gameOn = false;
-        readyGo.setBackgroundResource(R.drawable.game_over_animated);
-        readyGo.setVisibility(View.VISIBLE);
+        gameOver.setVisibility(View.VISIBLE);
         xButton.setVisibility(View.INVISIBLE);
         checkButton.setVisibility(View.INVISIBLE);
         rhs.setVisibility(View.INVISIBLE);
@@ -225,7 +226,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onFinish() {
-                readyGo.setVisibility(View.INVISIBLE);
+                gameOver.setVisibility(View.INVISIBLE);
                 submit_score.setVisibility(View.VISIBLE);
                 play_again.setVisibility(View.VISIBLE);
                 home.setVisibility(View.VISIBLE);
