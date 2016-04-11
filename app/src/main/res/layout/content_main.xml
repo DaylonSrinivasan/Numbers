@@ -138,7 +138,7 @@
         android:visibility="invisible" />
 
     <ImageButton
-        android:layout_width="150dp"
+        android:layout_width="wrap_content"
         android:layout_height="70dp"
         android:text="Play Again"
         android:id="@+id/play_again"
@@ -147,10 +147,11 @@
         android:layout_above="@+id/submit_score"
         android:visibility="invisible"
         android:scaleType="fitCenter"
-        android:src="@drawable/play_again"/>
+        android:src="@drawable/play_again1"
+        android:background="#ffffff" />
 
     <ImageButton
-        android:layout_width="150dp"
+        android:layout_width="wrap_content"
         android:layout_height="70dp"
         android:text="Submit Score"
         android:id="@+id/submit_score"
@@ -158,11 +159,12 @@
         android:layout_centerInParent="true"
         android:visibility="invisible"
         android:scaleType="fitCenter"
-        android:src="@drawable/submit_score"/>
+        android:src="@drawable/submit_score_1"
+        android:background="#ffffff" />
 
     <ImageButton
         android:layout_width="150dp"
-        android:layout_height="70dp"
+        android:layout_height="150dp"
         android:text="Home"
         android:id="@+id/home"
         android:layout_alignParentTop="false"
@@ -170,7 +172,8 @@
         android:layout_below="@+id/submit_score"
         android:visibility="invisible"
         android:scaleType="fitCenter"
-        android:src="@drawable/home"/>
+        android:src="@drawable/home1"
+        android:background="#ffffff" />
 
     <ImageButton
         android:layout_width="150dp"
@@ -178,7 +181,7 @@
         android:id="@+id/confirm_submit"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/submit"
+        android:src="@drawable/submit1"
         android:scaleType="fitCenter"
         android:visibility="invisible" />
 
