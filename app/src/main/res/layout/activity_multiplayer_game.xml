@@ -112,7 +112,7 @@
         android:id="@+id/level"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/pb_2"
-        android:text="asdf" />
+        android:visibility="invisible" />
 
     <TextView
         android:layout_width="wrap_content"

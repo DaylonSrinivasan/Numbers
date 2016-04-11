@@ -31,6 +31,9 @@ public class TitlePage extends AppCompatActivity {
     TextView rm1Occupancy;
     TextView rm2Occupancy;
     TextView rm3Occupancy;
+    long r1Occ;
+    long r2Occ;
+    long r3Occ;
     Firebase ref;
     boolean roomsVisible;
 
@@ -59,6 +62,7 @@ public class TitlePage extends AppCompatActivity {
         ref.child("Room 1").child("Players").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                r1Occ = (long)dataSnapshot.getValue();
                 rm1Occupancy.setText(((long)dataSnapshot.getValue()+"/2").toString());
             }
 
@@ -70,7 +74,8 @@ public class TitlePage extends AppCompatActivity {
         ref.child("Room 2").child("Players").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                rm2Occupancy.setText(((long)dataSnapshot.getValue()+"/2").toString());
+                r2Occ = (long) dataSnapshot.getValue();
+                rm2Occupancy.setText(((long) dataSnapshot.getValue() + "/2").toString());
             }
 
             @Override
@@ -81,7 +86,8 @@ public class TitlePage extends AppCompatActivity {
         ref.child("Room 3").child("Players").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                rm3Occupancy.setText(((long)dataSnapshot.getValue()+"/2").toString());
+                r3Occ = (long) dataSnapshot.getValue();
+                rm3Occupancy.setText(((long) dataSnapshot.getValue() + "/2").toString());
             }
 
             @Override
@@ -101,11 +107,10 @@ public class TitlePage extends AppCompatActivity {
         versus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!roomsVisible) {
+                if (!roomsVisible) {
                     roomLayout.setVisibility(View.VISIBLE);
                     roomsVisible = true;
-                }
-                else{
+                } else {
                     roomLayout.setVisibility(View.INVISIBLE);
                     roomsVisible = false;
                 }
@@ -121,29 +126,37 @@ public class TitlePage extends AppCompatActivity {
         });
 
         rm1.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(TitlePage.this, MultiplayerGame.class);
-                i.putExtra("room", 1);
-                startActivity(i);
+                if(r1Occ<2) {
+                    Intent i = new Intent(TitlePage.this, MultiplayerGame.class);
+                    i.putExtra("room", 1);
+                    startActivity(i);
+                }
             }
+
         });
 
         rm2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(TitlePage.this, MultiplayerGame.class);
-                i.putExtra("room", 2);
-                startActivity(i);
+                if(r2Occ<2) {
+                    Intent i = new Intent(TitlePage.this, MultiplayerGame.class);
+                    i.putExtra("room", 2);
+                    startActivity(i);
+                }
             }
         });
 
         rm3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(TitlePage.this, MultiplayerGame.class);
-                i.putExtra("room", 3);
-                startActivity(i);
+                if(r3Occ<2) {
+                    Intent i = new Intent(TitlePage.this, MultiplayerGame.class);
+                    i.putExtra("room", 3);
+                    startActivity(i);
+                }
             }
         });
 
