@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import java.util.Random;
 
+import pl.droidsonroids.gif.GifDrawable;
 import pl.droidsonroids.gif.GifTextView;
 
 public class MainActivity extends AppCompatActivity {
@@ -171,6 +172,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onFinish() {
                 readyGo.setVisibility(View.INVISIBLE);
+
                 startGame();
             }
         }.start();
