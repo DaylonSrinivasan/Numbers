@@ -125,15 +125,18 @@
         android:textSize="40sp"
         android:visibility="invisible" />
 
+
+
+
+
     <pl.droidsonroids.gif.GifTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/okgo"
         android:id="@+id/readygo"
+        android:scaleType="fitCenter"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:visibility="visible"
-        android:scaleType="fitCenter"
         />
 
 

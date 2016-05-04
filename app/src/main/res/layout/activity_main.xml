@@ -6,9 +6,5 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     tools:context="com.daylon.numbers.MainActivity">
-
-
     <include layout="@layout/content_main" />
-
-
 </android.support.design.widget.CoordinatorLayout>

@@ -108,8 +108,8 @@
         />
 
     <pl.droidsonroids.gif.GifTextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:layout_height="70dp"
         android:background="@drawable/game_over_animated"
         android:id="@+id/gameover"
         android:scaleType="fitCenter"
@@ -117,6 +117,16 @@
         android:visibility="invisible"
         android:layout_alignTop="@+id/play_again"
         android:layout_above="@+id/home" />
+
+    <pl.droidsonroids.gif.GifTextView
+        android:layout_width="fill_parent"
+        android:layout_height="70dp"
+        android:background="@drawable/daylons_dance"
+        android:id="@+id/daylons_dance"
+        android:scaleType="fitCenter"
+        android:layout_centerHorizontal="true"
+        android:visibility="invisible"
+        android:layout_above="@+id/gameover" />
 
     <TextView
         android:layout_width="wrap_content"

@@ -51,12 +51,6 @@ public class MultiplayerGame extends AppCompatActivity {
     Random random;
     boolean gameOn = false;
 
-    /*@Override
-    protected void onDestroy(){ //BAD WAY TO IMPLEMENT REMOVAL OF PLAYERS
-        super.onDestroy();
-        myFirebaseRef.child("Players").setValue(players-1);
-    }*/
-
     @Override
     protected void onStop(){
         super.onStop();
@@ -134,7 +128,7 @@ public class MultiplayerGame extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 scores[1] = (long) dataSnapshot.getValue();
                 pb_2.setProgress((int) scores[1]);
-                if(scores[1] == MAX_SCORE){
+                if (scores[1] == MAX_SCORE) {
                     endGame();
                 }
             }
@@ -215,7 +209,9 @@ public class MultiplayerGame extends AppCompatActivity {
 
         Typeface font = Typeface.createFromAsset(getAssets(), "Grundschrift-Bold.otf");
         lhs.setTypeface(font);
+        lhs.setTextSize(30);
         rhs.setTypeface(font);
+        rhs.setTextSize(30);
         tLevel.setTypeface(font);
     }
 
@@ -273,6 +269,7 @@ public class MultiplayerGame extends AppCompatActivity {
         level = 1;
         ans = setExpressions();
         equals.setVisibility(View.VISIBLE);
+        equals.setText(" = ");
         rhs.setVisibility(View.VISIBLE);
         lhs.setVisibility(View.VISIBLE);
         xButton.setImageResource(R.drawable.stillx);
@@ -299,6 +296,8 @@ public class MultiplayerGame extends AppCompatActivity {
             @Override
             public void onFinish() {
                 readyGo.setVisibility(View.INVISIBLE);
+                equals.setText(scores[(int)myID]==30 ? "You win!!!" : "You lose!!!");
+                equals.setVisibility(View.VISIBLE);
             }
         }.start();
     }

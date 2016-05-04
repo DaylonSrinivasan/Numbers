@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
     CountDownTimer timer;
     GifTextView readyGo;
     GifTextView gameOver;
+    GifTextView daylonsDance;
     boolean alreadySubmitted = false;
     int level;
     boolean ans = true;
@@ -47,18 +48,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        /*Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        */
-        /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });*/
 
         //Buttons!
         xButton = (ImageButton) findViewById(R.id.xbutton);
@@ -76,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
         //gifs
         readyGo = (GifTextView) findViewById(R.id.readygo);
         gameOver = (GifTextView) findViewById(R.id.gameover);
+        daylonsDance = (GifTextView) findViewById(R.id.daylons_dance);
 
         ref = new Firebase("https://daylonnumbers.firebaseio.com").child("UserScores");
         //Button Listeners!
@@ -150,7 +140,8 @@ public class MainActivity extends AppCompatActivity {
         confirm_submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(username.getText().toString().length()<14){
+                if(username.getText().toString().length()>2 &&
+                        username.getText().toString().length()<14){
                     UserScore u = new UserScore(username.getText().toString(), level);
                     ref.push().setValue(u);
                     confirm_submit.setVisibility(View.INVISIBLE);
@@ -213,6 +204,7 @@ public class MainActivity extends AppCompatActivity {
     public void endGame(){
         gameOn = false;
         gameOver.setVisibility(View.VISIBLE);
+        daylonsDance.setVisibility(View.VISIBLE);
         xButton.setVisibility(View.INVISIBLE);
         checkButton.setVisibility(View.INVISIBLE);
         rhs.setVisibility(View.INVISIBLE);
@@ -227,6 +219,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onFinish() {
                 gameOver.setVisibility(View.INVISIBLE);
+                daylonsDance.setVisibility(View.INVISIBLE);
                 submit_score.setVisibility(View.VISIBLE);
                 play_again.setVisibility(View.VISIBLE);
                 home.setVisibility(View.VISIBLE);
@@ -301,25 +294,4 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    /*@Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }*/
 }
