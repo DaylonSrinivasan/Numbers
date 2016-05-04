@@ -292,7 +292,7 @@ public class MultiplayerGame extends AppCompatActivity {
         botPlayer.setImageResource(myID == 1 ? R.drawable.you : R.drawable.your_opponent);
         topPlayer.setVisibility(View.VISIBLE);
         botPlayer.setVisibility(View.VISIBLE);
-        timer = new CountDownTimer(4500,10) {
+        timer = new CountDownTimer(3400,10) {
             @Override
             public void onTick(long millisUntilFinished) {
 

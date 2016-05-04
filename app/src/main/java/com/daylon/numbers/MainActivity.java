@@ -252,7 +252,7 @@ public class MainActivity extends AppCompatActivity {
         play_again.setVisibility(View.INVISIBLE);
         submit_score.setVisibility(View.INVISIBLE);
         home.setVisibility(View.INVISIBLE);
-        timer = new CountDownTimer(4500,10) {
+        timer = new CountDownTimer(3400,10) {
             @Override
             public void onTick(long millisUntilFinished) {
 

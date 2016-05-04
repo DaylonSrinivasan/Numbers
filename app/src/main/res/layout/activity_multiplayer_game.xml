@@ -76,8 +76,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/topPlayer"
         android:layout_alignParentTop="true"
-        android:src="@drawable/you"
-        android:layout_centerHorizontal="true" />
+        android:src="@drawable/you" />
 
     <ProgressBar
         style="@android:style/Widget.ProgressBar.Horizontal"
@@ -104,8 +103,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/botPlayer"
         android:src="@drawable/your_opponent"
-        android:layout_below="@+id/pb_1"
-        android:layout_centerHorizontal="true" />
+        android:layout_below="@+id/pb_1" />
 
     <ProgressBar
         style="@android:style/Widget.ProgressBar.Horizontal"
