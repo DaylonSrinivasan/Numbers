@@ -56,7 +56,8 @@ public class MultiplayerGame extends AppCompatActivity {
     @Override
     protected void onStop(){
         super.onStop();
-        myFirebaseRef.child("Players").setValue(players - 1);
+        if(idSet)
+            myFirebaseRef.child("Players").setValue(players - 1);
 
     }
 

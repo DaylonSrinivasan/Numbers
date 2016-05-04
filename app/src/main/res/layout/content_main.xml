@@ -120,13 +120,15 @@
 
     <pl.droidsonroids.gif.GifTextView
         android:layout_width="fill_parent"
-        android:layout_height="70dp"
+        android:layout_height="150dp"
         android:background="@drawable/daylons_dance"
         android:id="@+id/daylons_dance"
         android:scaleType="fitCenter"
         android:layout_centerHorizontal="true"
         android:visibility="invisible"
-        android:layout_above="@+id/gameover" />
+        android:layout_above="@+id/gameover"
+        android:layout_alignParentBottom="true"
+        />
 
     <TextView
         android:layout_width="wrap_content"
@@ -205,7 +207,8 @@
         android:layout_centerHorizontal="true"
         android:src="@drawable/submit1"
         android:scaleType="fitCenter"
-        android:visibility="invisible" />
+        android:visibility="invisible"
+        android:background="#ffffff" />
 
     <EditText
         android:layout_width="150dp"
@@ -216,7 +219,8 @@
         android:hint="Username"
         android:layout_alignWithParentIfMissing="false"
         android:layout_above="@+id/confirm_submit"
-        android:visibility="invisible" />
+        android:visibility="invisible"
+        android:background="#ffffff" />
 
 
 </RelativeLayout>

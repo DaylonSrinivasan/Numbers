@@ -79,7 +79,9 @@
                 android:src="@drawable/room1"
                 android:layout_alignParentTop="true"
                 android:layout_toLeftOf="@+id/rm2"
-                android:layout_toStartOf="@+id/rm2" />
+                android:layout_toStartOf="@+id/rm2"
+                android:background="#FFFFFF"
+                />
 
             <ImageButton
                 android:layout_width="wrap_content"
@@ -87,7 +89,9 @@
                 android:id="@+id/rm2"
                 android:src="@drawable/room2"
                 android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true" />
+                android:layout_centerHorizontal="true"
+                android:background="#FFFFFF"
+                />
 
             <ImageButton
                 android:layout_width="wrap_content"
@@ -96,7 +100,9 @@
                 android:src="@drawable/room3"
                 android:layout_alignParentTop="true"
                 android:layout_toRightOf="@+id/rm2"
-                android:layout_toEndOf="@+id/rm2" />
+                android:layout_toEndOf="@+id/rm2"
+                android:background="#FFFFFF"
+                />
 
             <TextView
                 android:layout_width="wrap_content"
