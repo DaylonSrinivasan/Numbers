@@ -23,7 +23,7 @@ import pl.droidsonroids.gif.GifTextView;
 
 public class MultiplayerGame extends AppCompatActivity {
 
-    final int MAX_SCORE = 5;
+    final int MAX_SCORE = 30;
     String gameRoom;
     GifTextView readyGo;
     long players;
@@ -119,6 +119,7 @@ public class MultiplayerGame extends AppCompatActivity {
                 scores[0] = (long) dataSnapshot.getValue();
                 pb_1.setProgress((int) scores[0]);
                 if(scores[0] == MAX_SCORE){
+                    readyGo.setBackgroundResource(myID== 1 ? R.drawable.you_lose_min : R.drawable.you_win_min);
                     endGame();
                 }
             }
@@ -134,6 +135,7 @@ public class MultiplayerGame extends AppCompatActivity {
                 scores[1] = (long) dataSnapshot.getValue();
                 pb_2.setProgress((int) scores[1]);
                 if (scores[1] == MAX_SCORE) {
+                    readyGo.setBackgroundResource(myID== 0 ? R.drawable.you_lose_min : R.drawable.you_win_min);
                     endGame();
                 }
             }
@@ -280,8 +282,8 @@ public class MultiplayerGame extends AppCompatActivity {
     }
 
     public void readyAnimation(){
-        readyGo.setVisibility(View.VISIBLE);
         readyGo.setBackgroundResource(R.drawable.readygo);
+        readyGo.setVisibility(View.VISIBLE);
         topPlayer.setImageResource(myID == 0 ? R.drawable.you : R.drawable.your_opponent);
         botPlayer.setImageResource(myID == 1 ? R.drawable.you : R.drawable.your_opponent);
         topPlayer.setVisibility(View.VISIBLE);
@@ -317,10 +319,10 @@ public class MultiplayerGame extends AppCompatActivity {
     }
     public void endGame(){
         gameOn = false;
+
         myFirebaseRef.child("Players").setValue(0);
         myFirebaseRef.child("p1Score").setValue(0);
         myFirebaseRef.child("p2Score").setValue(0);
-        readyGo.setBackgroundResource(R.drawable.game_over_animated);
         readyGo.setVisibility(View.VISIBLE);
         xButton.setVisibility(View.INVISIBLE);
         checkButton.setVisibility(View.INVISIBLE);
