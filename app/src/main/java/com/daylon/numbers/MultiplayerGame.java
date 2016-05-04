@@ -23,7 +23,7 @@ import pl.droidsonroids.gif.GifTextView;
 
 public class MultiplayerGame extends AppCompatActivity {
 
-    final int MAX_SCORE = 30;
+    final int MAX_SCORE = 5;
     String gameRoom;
     GifTextView readyGo;
     long players;
@@ -34,6 +34,8 @@ public class MultiplayerGame extends AppCompatActivity {
     Firebase myFirebaseRef;
     ImageButton xButton;
     ImageButton checkButton;
+    ImageButton play_again;
+    ImageButton home;
     ImageView topPlayer;
     ImageView botPlayer;
     TextView equals;
@@ -72,8 +74,8 @@ public class MultiplayerGame extends AppCompatActivity {
         gameRoom = "Room " + (int)getIntent().getExtras().get("room");
 
         myFirebaseRef = new Firebase("https://daylonnumbers.firebaseio.com").child(gameRoom);
-        Firebase disconnectRef = new Firebase("https://daylonnumbers.firebaseio.com").child(gameRoom).child("Players");
-        disconnectRef.onDisconnect().setValue(players);
+        //Firebase disconnectRef = new Firebase("https://daylonnumbers.firebaseio.com").child(gameRoom).child("Players");
+        //disconnectRef.onDisconnect().setValue(players);
         pb_1 = (ProgressBar) findViewById(R.id.pb_1);
         pb_2 = (ProgressBar) findViewById(R.id.pb_2);
         pb_1.setMax(MAX_SCORE);
@@ -81,6 +83,8 @@ public class MultiplayerGame extends AppCompatActivity {
 
         topPlayer = (ImageView) findViewById(R.id.topPlayer);
         botPlayer = (ImageView) findViewById(R.id.botPlayer);
+        play_again = (ImageButton) findViewById(R.id.play_again);
+        home = (ImageButton) findViewById(R.id.home);
 
         //readyGo View
         readyGo = (GifTextView) findViewById(R.id.readygo);
@@ -91,15 +95,15 @@ public class MultiplayerGame extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 players = (long) dataSnapshot.getValue();
-                if(!idSet) {
+                if (!idSet) {
                     myID = (long) dataSnapshot.getValue();
                     idSet = true;
-                    myFirebaseRef.child("Players").setValue(myID+1);
+                    myFirebaseRef.child("Players").setValue(myID + 1);
                 }
-                if(players==2){
+                if (players == 2) {
                     readyAnimation();
                 }
-                if(players==1)
+                if (players == 1)
                     readyGo.setBackgroundResource(R.drawable.waiting_for_opponent);
             }
 
@@ -196,6 +200,36 @@ public class MultiplayerGame extends AppCompatActivity {
             }
         });
 
+        play_again.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(!idSet) {
+                    if (players == 0) {
+                        idSet = true;
+                        myID = 0;
+                        myFirebaseRef.child("Players").setValue(myID + 1);
+                        readyGo.setBackgroundResource(R.drawable.waiting_for_opponent);
+                        readyGo.setVisibility(View.VISIBLE);
+                        play_again.setVisibility(View.INVISIBLE);
+                        home.setVisibility(View.INVISIBLE);
+
+                    } else if (players == 1) {
+                        idSet = true;
+                        myID = 1;
+                        myFirebaseRef.child("Players").setValue(myID + 1);
+                    }
+                }
+
+            }
+        });
+
+        home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
 
         //TextViews
         lhs = (TextView) findViewById(R.id.lhs);
@@ -276,10 +310,15 @@ public class MultiplayerGame extends AppCompatActivity {
         checkButton.setImageResource(R.drawable.stillcheck);
         xButton.setVisibility(View.VISIBLE);
         checkButton.setVisibility(View.VISIBLE);
+        play_again.setVisibility(View.INVISIBLE);
+        home.setVisibility(View.INVISIBLE);
         newLevel();
     }
     public void endGame(){
         gameOn = false;
+        myFirebaseRef.child("Players").setValue(0);
+        myFirebaseRef.child("p1Score").setValue(0);
+        myFirebaseRef.child("p2Score").setValue(0);
         readyGo.setBackgroundResource(R.drawable.game_over_animated);
         readyGo.setVisibility(View.VISIBLE);
         xButton.setVisibility(View.INVISIBLE);
@@ -296,8 +335,9 @@ public class MultiplayerGame extends AppCompatActivity {
             @Override
             public void onFinish() {
                 readyGo.setVisibility(View.INVISIBLE);
-                equals.setText(scores[(int)myID]==30 ? "You win!!!" : "You lose!!!");
-                equals.setVisibility(View.VISIBLE);
+                play_again.setVisibility(View.VISIBLE);
+                home.setVisibility(View.VISIBLE);
+                idSet = false;
             }
         }.start();
     }

@@ -139,5 +139,30 @@
         android:layout_centerVertical="true"
         />
 
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="70dp"
+        android:text="Play Again"
+        android:id="@+id/play_again"
+        android:src="@drawable/play_again1"
+        android:layout_alignParentTop="false"
+        android:layout_centerInParent="true"
+        android:visibility="invisible"
+        android:scaleType="fitCenter"
+        android:background="#ffffff" />
+
+    <ImageButton
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:text="Home"
+        android:id="@+id/home"
+        android:layout_alignParentTop="false"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/play_again"
+        android:visibility="invisible"
+        android:scaleType="fitCenter"
+        android:src="@drawable/home1"
+        android:background="#ffffff" />
+
 
 </RelativeLayout>
