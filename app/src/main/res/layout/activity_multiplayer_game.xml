@@ -89,6 +89,16 @@
         android:indeterminate="false" />
 
 
+    <pl.droidsonroids.gif.GifTextView
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:background="@drawable/okgo"
+        android:id="@+id/readygo"
+        android:scaleType="fitCenter"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        />
+
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -125,19 +135,6 @@
         android:textSize="40sp"
         android:visibility="invisible" />
 
-
-
-
-
-    <pl.droidsonroids.gif.GifTextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/okgo"
-        android:id="@+id/readygo"
-        android:scaleType="fitCenter"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        />
 
     <ImageButton
         android:layout_width="wrap_content"
