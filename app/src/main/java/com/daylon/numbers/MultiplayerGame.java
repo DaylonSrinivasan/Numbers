@@ -220,10 +220,10 @@ public class MultiplayerGame extends AppCompatActivity {
 
                     } else if (players == 1) {
                         idSet = true;
-                        myID = 1;
-                        myFirebaseRef.child("Players").setValue(myID + 1);
                         play_again.setVisibility(View.INVISIBLE);
                         home.setVisibility(View.INVISIBLE);
+                        myID = 1;
+                        myFirebaseRef.child("Players").setValue(myID + 1);
                     }
                 }
 
