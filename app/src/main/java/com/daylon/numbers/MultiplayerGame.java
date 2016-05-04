@@ -44,6 +44,7 @@ public class MultiplayerGame extends AppCompatActivity {
     ProgressBar [] pbs = {pb_1, pb_2};
     long [] scores = {0, 0};
     boolean idSet = false;
+    boolean firstTime = true;
     long myID;
 
     int level;
@@ -96,8 +97,9 @@ public class MultiplayerGame extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 players = (long) dataSnapshot.getValue();
-                if (!idSet) {
+                if (!idSet && firstTime) {
                     myID = (long) dataSnapshot.getValue();
+                    firstTime = false;
                     idSet = true;
                     myFirebaseRef.child("Players").setValue(myID + 1);
                 }
