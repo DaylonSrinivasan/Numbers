@@ -288,6 +288,9 @@ public class MultiplayerGame extends AppCompatActivity {
     public void readyAnimation(){
         readyGo.setBackgroundResource(R.drawable.readygo);
         readyGo.setVisibility(View.VISIBLE);
+        lhs.setVisibility(View.INVISIBLE);
+        rhs.setVisibility(View.INVISIBLE);
+        equals.setVisibility(View.INVISIBLE);
         topPlayer.setImageResource(myID == 0 ? R.drawable.you : R.drawable.your_opponent);
         botPlayer.setImageResource(myID == 1 ? R.drawable.you : R.drawable.your_opponent);
         topPlayer.setVisibility(View.VISIBLE);
