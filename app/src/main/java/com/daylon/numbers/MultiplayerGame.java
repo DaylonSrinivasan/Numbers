@@ -222,6 +222,8 @@ public class MultiplayerGame extends AppCompatActivity {
                         idSet = true;
                         myID = 1;
                         myFirebaseRef.child("Players").setValue(myID + 1);
+                        play_again.setVisibility(View.INVISIBLE);
+                        home.setVisibility(View.INVISIBLE);
                     }
                 }
 
